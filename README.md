@@ -1,6 +1,6 @@
 # Simpler Recycler View Adapter
 
-SimplerRecyclerViewAdapter used to simplfy the adapter structure for RecyclerView Markdown editor.
+SimplerRecyclerViewAdapter used to simplfy the adapter structure for RecyclerView.
   - Easy to use
   - No need to create adapter (Seperate java files)
   - Works with multiple view types
