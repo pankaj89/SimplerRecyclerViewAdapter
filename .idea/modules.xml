@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SimplerRecyclerViewAdapter.iml" filepath="$PROJECT_DIR$/SimplerRecyclerViewAdapter.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/simpler-recycler-view-adapter/simpler-recycler-view-adapter.iml" filepath="$PROJECT_DIR$/simpler-recycler-view-adapter/simpler-recycler-view-adapter.iml" />
     </modules>
   </component>
 </project>
