@@ -7,14 +7,9 @@ SimplerRecyclerViewAdapter used to simplfy the adapter structure for RecyclerVie
   - View holders are inside Activity or Fragment, so easily call methods of activity on row click.
 
 ### Download
-Include the following dependency in your build.gradle file.
+Include the following dependency in your apps build.gradle file.
 ```
-repositories {
-    jcenter()
-}
-dependencies {
-    compile 'com.master.android:simpler-recycler-view-adapter:1.0'
-}
+  compile 'com.master.android:simpler-recycler-view-adapter:1.0'
 ```
 
 ### Creating View Holder
