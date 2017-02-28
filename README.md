@@ -4,7 +4,7 @@ SimplerRecyclerViewAdapter used to simplfy the adapter structure for RecyclerVie
   - Easy to use
   - No need to create adapter (Seperate java files)
   - Works with multiple view types
-  - Visdfssasdasdasdasdew holders are inside Activity or Fragment, so easily call methods of activity on row click.
+  - View holders are inside Activity or Fragment, so easily call methods of activity on row click.
 
 ### Latest Version (1.1)
   - Solved issue with multiple data and while scrolling (Changed structure for ViewHolder, See "Creating View Holder" Section).
@@ -53,7 +53,7 @@ recyclerView.setAdapter(adapter);
 
 ### Comming Soon!!!
   - Add HeaderView (That will be available on top of recycler view.)
-  - Add Footer (That will be available on bottom of recycler view.)View
+  - Add FooterView (That will be available on bottom of recycler view.)View
 
 ### License
 ```
