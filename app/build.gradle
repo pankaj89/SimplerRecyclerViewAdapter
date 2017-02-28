@@ -28,4 +28,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.1'
     testCompile 'junit:junit:4.12'
     compile project(path: ':simpler-recycler-view-adapter')
+//        compile 'com.master.android:simpler-recycler-view-adapter:1.0'
 }
+

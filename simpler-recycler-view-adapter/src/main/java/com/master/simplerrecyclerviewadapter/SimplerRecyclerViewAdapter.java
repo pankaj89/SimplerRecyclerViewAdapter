@@ -9,61 +9,62 @@ import java.util.ArrayList;
 
 /**
  * SimplerRecyclerViewAdapter
- * @Version   : 1.0
+ *
+ * @Version : 1.1
  * @Developer : Pankaj Sharma
  * @Description : SimplerRecyclerViewAdapter used to simplfy the adapter structure for RecyclerView,
  * you can create multiple viewholder for different-different View Type
- *
+ * <p>
  * How to use?
  * ------------
- * SimplerRecyclerViewAdapter.SimplerViewHolder simplerViewHolder1 = new SimplerRecyclerViewAdapter.SimplerViewHolder<Student>() {
- *
- *      TextView txtName, txtDesignation;
- *
- *      @Override
- *      public void create(View itemView) {
- *          txtName = (TextView) itemView.findViewById(R.id.name);
- *          txtDesignation = (TextView) itemView.findViewById(R.id.designation);
- *      }
- *
- *      @Override
- *      public void bind(Student model) {
- *          txtName.setText(model.name);
- *          txtDesignation.setText(model.designation);
- *      }
+ * SimplerRecyclerViewAdapter.SimplerRowHolder simplerViewHolder = new SimplerRecyclerViewAdapter.SimplerRowHolder<Student>() {
+ * @Override public SimplerViewHolder getAdapter(View view) {
+ * return new SimplerViewHolder(view) {
+ * <p>
+ * TextView txtName, txtDesignation;
+ * @Override public void create() {
+ * txtName = links(R.id.name);
+ * txtDesignation = links(R.id.designation);
+ * }
+ * @Override public void bind(Student model) {
+ * isMyViewType(model);
+ * txtName.setText(model.name);
+ * txtDesignation.setText(model.designation);
+ * }
  * };
- *
+ * }
+ * };
+ * <p>
  * SimplerRecyclerViewAdapter adapter = new SimplerRecyclerViewAdapter();
  * adapter.addViewHolder(R.layout.row_item_1, simplerViewHolder1);
- * adapter.addViewHolder(R.layout.row_item_2, simplerViewHolder2);
  * adapter.setList(list);
  * <your_recycler_view>.setAdapter(adapter);
- *
- *
  */
 
-public final class SimplerRecyclerViewAdapter<M> extends RecyclerView.Adapter<SimplerRecyclerViewAdapter.ViewHolder> {
+
+public final class SimplerRecyclerViewAdapter<M> extends RecyclerView.Adapter<SimplerRecyclerViewAdapter.SimplerRowHolder.SimplerViewHolder> {
 
     private ArrayList<M> mList;
     private ArrayList<Integer> resLayoutList;
-    private ArrayList<SimplerViewHolder> viewHolderList;
+    private ArrayList<SimplerRowHolder> viewHolderList;
 
     public SimplerRecyclerViewAdapter() {
         mList = new ArrayList<M>();
         resLayoutList = new ArrayList<Integer>();
-        viewHolderList = new ArrayList<SimplerViewHolder>();
+        viewHolderList = new ArrayList<SimplerRowHolder>();
     }
 
     @Override
-    public SimplerRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (resLayoutList.size() <= 0) {
-            throw new RuntimeException("You forgot to add ViewHolder, please add view holder using SimplerRecyclerViewAdapter.addViewHolder() method");
-        }
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(resLayoutList.get(viewType), parent, false), viewHolderList.get(viewType));
+    public SimplerRowHolder.SimplerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        int res = resLayoutList.get(viewType);
+        View view = LayoutInflater.from(parent.getContext()).inflate(res, parent, false);
+        SimplerRowHolder.SimplerViewHolder viewHolder = viewHolderList.get(viewType).getAdapter(view);
+        viewHolder.create();
+        return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(SimplerRecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(SimplerRowHolder.SimplerViewHolder holder, int position) {
         holder.bind(getItem(position));
     }
 
@@ -71,7 +72,7 @@ public final class SimplerRecyclerViewAdapter<M> extends RecyclerView.Adapter<Si
     public int getItemViewType(int position) {
         if (viewHolderList != null) {
             int pos = 0;
-            for (SimplerViewHolder simplerViewHolder : viewHolderList) {
+            for (SimplerRowHolder simplerViewHolder : viewHolderList) {
                 if (simplerViewHolder.isMyViewType(getItem(position)))
                     return pos;
                 pos++;
@@ -90,29 +91,17 @@ public final class SimplerRecyclerViewAdapter<M> extends RecyclerView.Adapter<Si
      * @param resLayout
      * @param simplerViewHolder
      */
-    public void addViewHolder(int resLayout, SimplerViewHolder<M> simplerViewHolder) {
+    public void addViewHolder(int resLayout, SimplerRowHolder<M> simplerViewHolder) {
         this.resLayoutList.add(resLayout);
         this.viewHolderList.add(simplerViewHolder);
     }
+
 
     @Override
     public int getItemCount() {
         return mList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        SimplerViewHolder viewHolder;
-
-        public ViewHolder(View itemView, SimplerViewHolder viewHolder) {
-            super(itemView);
-            this.viewHolder = viewHolder;
-            this.viewHolder.create(itemView);
-        }
-
-        public void bind(M model) {
-            viewHolder.bind(model);
-        }
-    }
 
     /**
      * Extend this class to make view holder that works with SimplerRecyclerViewAdapter
@@ -121,20 +110,39 @@ public final class SimplerRecyclerViewAdapter<M> extends RecyclerView.Adapter<Si
      *
      * @param <M>
      */
-    public static abstract class SimplerViewHolder<M> {
+    public abstract static class SimplerRowHolder<M> {
 
-        public SimplerViewHolder() {
+        int adapterPosition;
+
+        public SimplerRowHolder() {
 
         }
-
-        public abstract void create(View view);
-
-        public abstract void bind(M model);
 
         public boolean isMyViewType(M model) {
             return false;
         }
+
+        public abstract SimplerViewHolder getAdapter(View view);
+
+        public abstract class SimplerViewHolder extends RecyclerView.ViewHolder {
+
+            int adapterPosition;
+
+            public SimplerViewHolder(View view) {
+                super(view);
+            }
+
+            public abstract void create();
+
+            public abstract void bind(M model);
+
+            public <V extends View> V links(int res) {
+                return (V) itemView.findViewById(res);
+            }
+
+        }
     }
+
 
     //User defined Methods start
 
@@ -171,7 +179,7 @@ public final class SimplerRecyclerViewAdapter<M> extends RecyclerView.Adapter<Si
     }
 
     /**
-     * Remove item at position
+     * Resmove item at position
      *
      * @param position
      */

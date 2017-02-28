@@ -31,38 +31,51 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    SimplerRecyclerViewAdapter.SimplerViewHolder simplerViewHolder1 = new SimplerRecyclerViewAdapter.SimplerViewHolder<Student>() {
-
-        TextView txtName, txtDesignation;
+    SimplerRecyclerViewAdapter.SimplerRowHolder simplerViewHolder1 = new SimplerRecyclerViewAdapter.SimplerRowHolder<Student>() {
 
         @Override
-        public void create(View itemView) {
-            txtName = (TextView) itemView.findViewById(R.id.name);
-            txtDesignation = (TextView) itemView.findViewById(R.id.designation);
-        }
+        public SimplerViewHolder getAdapter(View view) {
+            return new SimplerViewHolder(view) {
 
-        @Override
-        public void bind(Student model) {
-            txtName.setText(model.name);
-            txtDesignation.setText(model.designation);
+                TextView txtName, txtDesignation;
+
+                @Override
+                public void create() {
+                    txtName = links(R.id.name);
+                    txtDesignation = links(R.id.designation);
+                }
+
+                @Override
+                public void bind(Student model) {
+                    isMyViewType(model);
+                    txtName.setText(model.name);
+                    txtDesignation.setText(model.designation);
+                }
+            };
         }
     };
-    SimplerRecyclerViewAdapter.SimplerViewHolder simplerViewHolder2 = new SimplerRecyclerViewAdapter.SimplerViewHolder<Student>() {
 
-        TextView txtName, txtDesignation, txtCompany;
-
-        @Override
-        public void create(View itemView) {
-            txtName = (TextView) itemView.findViewById(R.id.name);
-            txtDesignation = (TextView) itemView.findViewById(R.id.designation);
-            txtCompany = (TextView) itemView.findViewById(R.id.company);
-        }
+    SimplerRecyclerViewAdapter.SimplerRowHolder simplerViewHolder2 = new SimplerRecyclerViewAdapter.SimplerRowHolder<Student>() {
 
         @Override
-        public void bind(Student model) {
-            txtName.setText(model.name);
-            txtDesignation.setText(model.designation);
-            txtCompany.setText(model.company);
+        public SimplerViewHolder getAdapter(View view) {
+            return new SimplerViewHolder(view) {
+
+                TextView txtName, txtDesignation;
+
+                @Override
+                public void create() {
+                    txtName = links(R.id.name);
+                    txtDesignation = links(R.id.designation);
+                }
+
+                @Override
+                public void bind(Student model) {
+                    isMyViewType(model);
+                    txtName.setText(model.name);
+                    txtDesignation.setText(model.designation);
+                }
+            };
         }
 
         @Override
@@ -76,11 +89,49 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Student> getDummyList() {
         ArrayList<Student> list = new ArrayList<Student>();
-        list.add(new Student("Pankaj", "Android", "Openxcell"));
-        list.add(new Student("Sumit", "Web", ""));
-        list.add(new Student("Ronak", "Php", "SkyInfoSys"));
-        list.add(new Student("Dipen", "RxJava", "SmartWebtech"));
-        list.add(new Student("Ravindra", "Google Go", null));
+        list.add(new Student("1", "Web", ""));
+        list.add(new Student("2", "Android", "Openxcell"));
+        list.add(new Student("3", "Php", "SkyInfoSys"));
+        list.add(new Student("4", "CakePHP", "SmartWebtech"));
+        list.add(new Student("5", "Google Go", "TCS"));
+        list.add(new Student("6", "Google Go", null));
+        list.add(new Student("7", "Android", "Wipro"));
+        list.add(new Student("8", "Android", null));
+        list.add(new Student("9", "Web", ""));
+        list.add(new Student("10", "Web", ""));
+        list.add(new Student("11", "Web", ""));
+        list.add(new Student("12", "Android", "Openxcell"));
+        list.add(new Student("13", "Php", "SkyInfoSys"));
+        list.add(new Student("14", "CakePHP", "SmartWebtech"));
+        list.add(new Student("15", "Google Go", "TCS"));
+        list.add(new Student("16", "Google Go", null));
+        list.add(new Student("17", "Android", "Wipro"));
+        list.add(new Student("18", "Android", null));
+        list.add(new Student("19", "Web", ""));
+        list.add(new Student("20", "Android", "Openxcell"));
+        list.add(new Student("21", "Php", "SkyInfoSys"));
+        list.add(new Student("22", "CakePHP", "SmartWebtech"));
+        list.add(new Student("23", "Google Go", "TCS"));
+        list.add(new Student("24", "Google Go", null));
+        list.add(new Student("25", "Android", "Wipro"));
+        list.add(new Student("26", "Android", null));
+        list.add(new Student("27", "Web", ""));
+        list.add(new Student("28", "Android", "Openxcell"));
+        list.add(new Student("29", "Php", "SkyInfoSys"));
+        list.add(new Student("30", "CakePHP", "SmartWebtech"));
+        list.add(new Student("31", "Google Go", "TCS"));
+        list.add(new Student("32", "Google Go", null));
+        list.add(new Student("33", "Android", "Wipro"));
+        list.add(new Student("34", "Android", null));
+        list.add(new Student("35", "Web", ""));
+        list.add(new Student("36", "Android", "Openxcell"));
+        list.add(new Student("37", "Php", "SkyInfoSys"));
+        list.add(new Student("38", "CakePHP", "SmartWebtech"));
+        list.add(new Student("39", "Google Go", "TCS"));
+        list.add(new Student("40", "Google Go", null));
+        list.add(new Student("41", "Android", "Wipro"));
+        list.add(new Student("42", "Android", null));
+
         return list;
     }
 }

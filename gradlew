@@ -63,6 +63,9 @@ cd "$SAVED" >/dev/null
 CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
 
 # Determine the Java command to use to start the JVM.
+
+# <<Set by pankaj, Setting the location of java which is used in android studio. otherwise it gives message unsupported version 52.0>>
+JAVA_HOME="/home/hb/Suresh_0718/Softwares/android-studio/jre"
 if [ -n "$JAVA_HOME" ] ; then
     if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
         # IBM's JDK on AIX uses strange locations for the executables
