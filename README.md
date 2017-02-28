@@ -4,30 +4,40 @@ SimplerRecyclerViewAdapter used to simplfy the adapter structure for RecyclerVie
   - Easy to use
   - No need to create adapter (Seperate java files)
   - Works with multiple view types
-  - View holders are inside Activity or Fragment, so easily call methods of activity on row click.
+  - Visdfssasdasdasdasdew holders are inside Activity or Fragment, so easily call methods of activity on row click.
+
+### Latest Version (1.1)
+  - Solved issue with multiple data and while scrolling (Changed structure for ViewHolder, See "Creating View Holder" Section).
 
 ### Download
 Include the following dependency in your apps build.gradle file.
 ```
-compile 'com.master.android:simpler-recycler-view-adapter:1.0'
+compile 'com.master.android:simpler-recycler-view-adapter:1.1'
 ```
 
 ### Creating View Holder
 ```java
-SimplerRecyclerViewAdapter.SimplerViewHolder simplerViewHolder1 = new SimplerRecyclerViewAdapter.SimplerViewHolder<Student>() {
-
-    TextView txtName, txtDesignation;
+SimplerRecyclerViewAdapter.SimplerRowHolder simplerViewHolder1 = new SimplerRecyclerViewAdapter.SimplerRowHolder<Student>() {
 
     @Override
-    public void create(View itemView) {
-        txtName = (TextView) itemView.findViewById(R.id.name);
-        txtDesignation = (TextView) itemView.findViewById(R.id.designation);
-    }
+    public SimplerViewHolder getAdapter(View view) {
+        return new SimplerViewHolder(view) {
 
-    @Override
-    public void bind(Student model) {
-        txtName.setText(model.name);
-        txtDesignation.setText(model.designation);
+            TextView txtName, txtDesignation;
+
+            @Override
+            public void create() {
+                txtName = links(R.id.name);
+                txtDesignation = links(R.id.designation);
+            }
+
+            @Override
+            public void bind(Student model) {
+                isMyViewType(model);
+                txtName.setText(model.name);
+                txtDesignation.setText(model.designation);
+            }
+        };
     }
 };
 ```
@@ -40,6 +50,11 @@ adapter.addViewHolder(R.layout.row_item_2, simplerViewHolder2);
 adapter.setList(list);
 recyclerView.setAdapter(adapter);
 ```
+
+### Comming Soon!!!
+  - Add HeaderView (That will be available on top of recycler view.)
+  - Add Footer (That will be available on bottom of recycler view.)View
+
 ### License
 ```
 Copyright 2017 Pankaj Sharma
