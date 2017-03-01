@@ -1,5 +1,7 @@
 # Simpler Recycler View Adapter
 
+[![N|Solid](https://img.shields.io/badge/Android%20Arsenal-Simpler%20Recycler%20View%20Adapter-brightgreen.svg)](https://android-arsenal.com/details/1/5354)
+
 SimplerRecyclerViewAdapter used to simplfy the adapter structure for RecyclerView.
   - Easy to use
   - No need to create adapter (Seperate java files)
