@@ -1,4 +1,7 @@
-# Simpler Recycler View Adapter
+# Simpler Recycler View Adapter (Depricated)
+
+# Use https://github.com/pankaj89/SimpleAdapter(https://github.com/pankaj89/SimpleAdapter)
+
 
 [![N|Solid](https://img.shields.io/badge/Android%20Arsenal-Simpler%20Recycler%20View%20Adapter-brightgreen.svg)](https://android-arsenal.com/details/1/5354)
 
